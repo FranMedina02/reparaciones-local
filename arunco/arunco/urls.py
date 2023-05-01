@@ -1,3 +1,4 @@
+from django.urls import include
 """
 URL configuration for arunco project.
 
@@ -19,4 +20,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('oficina/', include('oficinaApp.urls')),
+    path('taller/', include('tallerApp.urls')),
+    path('reparaciones/', include('reparacionesApp.urls')),
 ]
