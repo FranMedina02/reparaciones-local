@@ -14,15 +14,24 @@ class Reparaciones(models.Model):
     venta = models.IntegerField(null=True, blank=True) # Precio de venta
     confirmado = models.BooleanField(default=False)
     plazo_de_entrega = models.DateField(null=True, blank=True)
+    
+    class Meta:
+        verbose_name_plural = "reparaciones"
 
 class Clientes(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
     telefono = models.CharField(max_length=13, unique=True, null=True, blank=True)
     mail = models.EmailField(max_length=100, unique=True, null=True, blank=True)
     empresa = models.CharField(max_length=50)
+    
+    class Meta:
+        verbose_name_plural = "clientes"
 
 class Trabajos(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
+    
+    class Meta:
+        verbose_name_plural = "trabajos"
 
 class ManoDeObra(models.Model):
     reparacion = models.ForeignKey(Reparaciones, on_delete=models.CASCADE)
@@ -31,15 +40,22 @@ class ManoDeObra(models.Model):
     orden = models.IntegerField()
     
     class Meta:
+        verbose_name_plural = "mano de obra"
         ordering = ["orden"]
 
 class Repuestos(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
     proveedor = models.CharField(max_length=50)
+    
+    class Meta:
+        verbose_name_plural = "repuestos"
 
 class Encargos(models.Model):
     trabajo = models.ForeignKey(Reparaciones,on_delete=models.CASCADE)
     repuesto = models.ForeignKey(Repuestos, verbose_name="A comprar" ,on_delete=models.CASCADE)
     encargado = models.BooleanField(default=False)
     costo = models.IntegerField()
+    
+    class Meta:
+        verbose_name_plural = "encargos"
     
