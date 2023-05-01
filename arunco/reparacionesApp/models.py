@@ -9,7 +9,7 @@ class Reparaciones(models.Model):
     cliente = models.ForeignKey("Clientes", verbose_name=("Cliente"), on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     trabajo = models.ManyToManyField("Trabajos", through='ManoDeObra')
-    repuestos = models.ManyToManyField('Repuestos', through="Encargos",null=True, blank=True)
+    repuestos = models.ManyToManyField('Repuestos', through="Encargos", blank=True)
     total = models.IntegerField(verbose_name="costo",null=True, blank=True) # Costo de fabricacion
     venta = models.IntegerField(null=True, blank=True) # Precio de venta
     confirmado = models.BooleanField(default=False)
